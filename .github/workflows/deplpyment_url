@@ -1,0 +1,12 @@
+- name: Deploy
+  id: deploy
+  uses: cloudflare/wrangler-action@v3
+  with:
+    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    command: pages deploy --project-name=example
+
+- name: print deployment-url
+  env:
+    DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+  run: echo $https://p-ode-com-0z7.pages.dev/
